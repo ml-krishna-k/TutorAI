@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ask a Doubt - MindMate</title>
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <!-- Font Awesome & Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Firebase SDK -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.23.0/firebase-app-compat.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.23.0/firebase-auth-compat.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.23.0/firebase-firestore-compat.min.js"></script>
+</head>
+<body>
+    <!-- Ask a Doubt Page -->
+    <div id="askDoubtPage" class="page active">
+        <div class="page-header">
+            <button class="back-btn" onclick="window.location.href='index.html#dashboardPage'">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <h1>🧠 Ask a Doubt</h1>
+        </div>
+
+        <div class="doubt-container">
+            <div class="doubt-input-section">
+                <div class="input-group">
+                    <textarea id="doubtInput" placeholder="Type your question here... (e.g., What is photosynthesis?)"></textarea>
+                    <div class="input-actions">
+                        <button class="voice-btn" id="voiceBtn">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                        <button class="ask-btn" id="askTextBtn">
+                            <i class="fas fa-paper-plane"></i>
+                            Ask
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Image-based doubt input -->
+                <div class="image-doubt-group">
+                    <div class="image-input-wrapper">
+                        <label for="imageInput" class="file-input-label">
+                            <input type="file" id="imageInput" accept="image/*">
+                            <i class="fas fa-camera"></i>
+                            Upload Image
+                        </label>
+                        <button class="ask-btn" id="askImageBtn" style="display: none;">
+                            <i class="fas fa-image"></i>
+                            Solve from Image
+                        </button>
+                    </div>
+                    <img id="imagePreview" class="image-preview" style="display: none;" alt="Uploaded image">
+                </div>
+            </div>
+
+            <div class="doubt-response" id="doubtResponse" style="display: none;">
+                <div class="response-header">
+                    <h3>📝 AI Explanation</h3>
+                    <div class="response-actions">
+                        <button class="rephrase-btn" id="rephraseBtn">
+                            <i class="fas fa-sync-alt"></i>
+                            Explain like a story
+                        </button>
+                    </div>
+                </div>
+                <div class="response-content" id="responseContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Animation -->
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Processing your question...</p>
+        </div>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="javascript/config.js"></script>
+    <script src="javascript/auth.js"></script>
+    <script src="geminiAPI.js"></script>
+    <script src="emotionDetection.js"></script>
+    <script src="javascript/doubt.js"></script>
+</body>
+</html>

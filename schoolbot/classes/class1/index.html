@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wonder Valley - Class 1 Learning Adventure</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background Music Toggle -->
+    <div class="music-toggle" onclick="toggleMusic()">🎵</div>
+    
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="stars-count">⭐ <span id="starsCount">0</span></div>
+    </div>
+
+    <!-- Main Game Container -->
+    <div class="game-container">
+        <!-- Welcome Screen -->
+        <div class="screen active" id="welcomeScreen">
+            <div class="sky-bg">
+                <div class="cloud cloud1"></div>
+                <div class="cloud cloud2"></div>
+                <div class="cloud cloud3"></div>
+            </div>
+            <div class="welcome-content">
+                <h1 class="rainbow-text animate-bounce">Welcome to Wonder Valley!</h1>
+                <div class="character-intro">
+                    <div class="character bunny" onclick="playSound('bunny')">
+                        <div class="character-body">🐰</div>
+                        <div class="character-name">Benny Bunny</div>
+                    </div>
+                    <div class="character owl" onclick="playSound('owl')">
+                        <div class="character-body">🦉</div>
+                        <div class="character-name">Ollie Owl</div>
+                    </div>
+                    <div class="character fox" onclick="playSound('fox')">
+                        <div class="character-body">🦊</div>
+                        <div class="character-name">Fifi Fox</div>
+                    </div>
+                </div>
+                <button class="start-btn" onclick="showWorldMap()">Start Adventure!</button>
+            </div>
+        </div>
+
+        <!-- World Map Screen -->
+        <div class="screen" id="worldMapScreen">
+            <div class="world-title">Choose Your Learning Zone!</div>
+            <div class="world-map">
+                <div class="zone math-zone" onclick="enterZone('math')">
+                    <div class="zone-icon">🔢</div>
+                    <div class="zone-name">Number Mountain</div>
+                    <div class="zone-progress">
+                        <div class="progress-dots">
+                            <span class="dot completed"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="zone english-zone" onclick="enterZone('english')">
+                    <div class="zone-icon">🌸</div>
+                    <div class="zone-name">English Garden</div>
+                    <div class="zone-progress">
+                        <div class="progress-dots">
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="zone evs-zone" onclick="enterZone('evs')">
+                    <div class="zone-icon">🌳</div>
+                    <div class="zone-name">Discovery Forest</div>
+                    <div class="zone-progress">
+                        <div class="progress-dots">
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="back-btn" onclick="window.location.href = '../../index.html#dashboardPage'">🏠 Home</button>
+        </div>
+
+        <!-- Math Zone Screen -->
+        <div class="screen" id="mathScreen">
+            <div class="zone-header math-header">
+                <h2>🔢 Number Mountain</h2>
+                <div class="helper-character">
+                    <span class="character-helper">🐰</span>
+                    <div class="speech-bubble" id="mathSpeech">Let's learn numbers together!</div>
+                </div>
+            </div>
+            
+            <div class="game-menu">
+                <div class="game-card" onclick="playMathGame('numbers')">
+                    <div class="game-icon">1️⃣2️⃣3️⃣</div>
+                    <div class="game-title">Number Train</div>
+                    <div class="game-desc">Count and arrange numbers!</div>
+                </div>
+                
+                <div class="game-card" onclick="playMathGame('shapes')">
+                    <div class="game-icon">🔺🔴⬜</div>
+                    <div class="game-title">Shape Hunt</div>
+                    <div class="game-desc">Find hidden shapes!</div>
+                </div>
+                
+                <div class="game-card" onclick="playMathGame('addition')">
+                    <div class="game-icon">➕</div>
+                    <div class="game-title">Addition Race</div>
+                    <div class="game-desc">Solve to win the race!</div>
+                </div>
+                
+                <div class="game-card" onclick="playMathGame('money')">
+                    <div class="game-icon">🪙</div>
+                    <div class="game-title">Coin Counter</div>
+                    <div class="game-desc">Count coins and money!</div>
+                </div>
+            </div>
+            
+            <button class="back-btn" onclick="window.location.href = '../../index.html#dashboardPage'">🗺️ Back to Map</button>
+        </div>
+
+        <!-- English Zone Screen -->
+        <div class="screen" id="englishScreen">
+            <div class="zone-header english-header">
+                <h2>🌸 English Garden</h2>
+                <div class="helper-character">
+                    <span class="character-helper">🦉</span>
+                    <div class="speech-bubble" id="englishSpeech">Let's explore letters and words!</div>
+                </div>
+            </div>
+            
+            <div class="game-menu">
+                <div class="game-card" onclick="playEnglishGame('alphabet')">
+                    <div class="game-icon">🔤</div>
+                    <div class="game-title">Alphabet Catch</div>
+                    <div class="game-desc">Catch falling letters!</div>
+                </div>
+                
+                <div class="game-card" onclick="playEnglishGame('phonics')">
+                    <div class="game-icon">🫧</div>
+                    <div class="game-title">Phonic Bubbles</div>
+                    <div class="game-desc">Pop sound bubbles!</div>
+                </div>
+                
+                <div class="game-card" onclick="playEnglishGame('words')">
+                    <div class="game-icon">🧩</div>
+                    <div class="game-title">Word Builder</div>
+                    <div class="game-desc">Build 3-letter words!</div>
+                </div>
+                
+                <div class="game-card" onclick="playEnglishGame('story')">
+                    <div class="game-icon">📚</div>
+                    <div class="game-title">Story Time</div>
+                    <div class="game-desc">Listen and learn!</div>
+                </div>
+            </div>
+            
+            <button class="back-btn" onclick="window.location.href = '../../index.html#dashboardPage'">🗺️ Back to Map</button>
+        </div>
+
+        <!-- EVS Zone Screen -->
+        <div class="screen" id="evsScreen">
+            <div class="zone-header evs-header">
+                <h2>🌳 Discovery Forest</h2>
+                <div class="helper-character">
+                    <span class="character-helper">🦊</span>
+                    <div class="speech-bubble" id="evsSpeech">Let's explore the world around us!</div>
+                </div>
+            </div>
+            
+            <div class="game-menu">
+                <div class="game-card" onclick="playEVSGame('family')">
+                    <div class="game-icon">👨‍👩‍👧‍👦</div>
+                    <div class="game-title">My Family Tree</div>
+                    <div class="game-desc">Build your family tree!</div>
+                </div>
+                
+                <div class="game-card" onclick="playEVSGame('habits')">
+                    <div class="game-icon">⭐</div>
+                    <div class="game-title">Good Habits Wheel</div>
+                    <div class="game-desc">Spin to learn habits!</div>
+                </div>
+                
+                <div class="game-card" onclick="playEVSGame('safety')">
+                    <div class="game-icon">🚦</div>
+                    <div class="game-title">Safety Game</div>
+                    <div class="game-desc">Choose safe actions!</div>
+                </div>
+                
+                <div class="game-card" onclick="playEVSGame('seasons')">
+                    <div class="game-icon">🌦️</div>
+                    <div class="game-title">Seasons Dress-Up</div>
+                    <div class="game-desc">Dress for the weather!</div>
+                </div>
+            </div>
+            
+            <button class="back-btn" onclick="window.location.href = '../../index.html#dashboardPage'">🗺️ Back to Map</button>
+        </div>
+
+        <!-- Game Play Screen -->
+        <div class="screen" id="gameScreen">
+            <div class="game-header">
+                <button class="back-btn small" onclick="goBackToZone()">← Back</button>
+                <div class="game-timer" id="gameTimer">⏰ 60</div>
+                <div class="game-score" id="gameScore">Score: 0</div>
+            </div>
+            
+            <div class="game-area" id="gameArea">
+                <!-- Dynamic game content will be inserted here -->
+            </div>
+            
+            <div class="game-controls" id="gameControls">
+                <!-- Dynamic game controls will be inserted here -->
+            </div>
+        </div>
+
+        <!-- Success Screen -->
+        <div class="screen" id="successScreen">
+            <div class="success-content">
+                <div class="celebration">🎉</div>
+                <h2 class="success-title">Fantastic Job!</h2>
+                <div class="stars-earned" id="starsEarned">
+                    <span class="star">⭐</span>
+                    <span class="star">⭐</span>
+                    <span class="star">⭐</span>
+                </div>
+                <div class="success-message" id="successMessage">You earned 3 stars!</div>
+                <div class="success-buttons">
+                    <button class="play-again-btn" onclick="playAgain()">Play Again</button>
+                    <button class="continue-btn" onclick="showWorldMap()">Continue Adventure</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Parent Zone Screen -->
+        <div class="screen" id="parentScreen">
+            <div class="parent-header">
+                <h2>📊 Parent Dashboard</h2>
+            </div>
+            <div class="progress-stats">
+                <div class="stat-card">
+                    <div class="stat-title">Math Progress</div>
+                    <div class="stat-bar">
+                        <div class="stat-fill" style="width: 60%"></div>
+                    </div>
+                    <div class="stat-text">60% Complete</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-title">English Progress</div>
+                    <div class="stat-bar">
+                        <div class="stat-fill" style="width: 40%"></div>
+                    </div>
+                    <div class="stat-text">40% Complete</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-title">EVS Progress</div>
+                    <div class="stat-bar">
+                        <div class="stat-fill" style="width: 30%"></div>
+                    </div>
+                    <div class="stat-text">30% Complete</div>
+                </div>
+            </div>
+            <button class="back-btn" onclick="window.location.href = '../../index.html#dashboardPage'">Back to Game</button>
+        </div>
+    </div>
+
+    <!-- Parent Access Button -->
+    <div class="parent-access" onclick="showParentZone()">👨‍👩‍👧‍👦</div>
+
+    <!-- Audio Elements -->
+    <audio id="backgroundMusic" loop>
+        <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmEcBjiS1fLNeSsFJXfH8N2QQAoUXrTp66hVFApGn+DyvmEcBjiS1fLNeSsFJXfH8N2QQAoUXrTp66hVFApGn+DyvmEcBjiS1fLNeSsFJXfH8N2QQAoUXrTp66hVFApGn+DyvmEcBjiS1fLNeSsFJXfH8N2QQAoUXrTp66hVFApGn+DyvmEcBjWN0PLbeSsEJX" type="audio/wav">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wonder Valley - Class 1 Learning Adventure</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <a href="#mainContent" class="skip-link">Skip to main content</a>
+    <!-- Background Music Toggle -->
+    <div class="music-toggle" id="musicToggle" tabindex="0" aria-label="Toggle background music" title="Toggle background music" onclick="toggleMusic()" onkeypress="if(event.key==='Enter'){toggleMusic();}">🎵</div>
+    
+    <!-- Progress Bar -->
+    <div class="progress-container" aria-label="Progress">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="stars-count" aria-label="Stars earned">⭐ <span id="starsCount">0</span></div>
+    </div>
+
+    <main id="mainContent" tabindex="-1">
+    <div class="game-container">
+        <!-- Visually hidden heading for screen readers -->
+        <h1 class="visually-hidden">Wonder Valley Class 1 Learning Adventure</h1>
+        <!-- Welcome Screen -->
+        <section class="screen active" id="welcomeScreen" aria-label="Welcome Screen">
+            <div class="sky-bg" aria-hidden="true">
+                <div class="cloud cloud1"></div>
+                <div class="cloud cloud2"></div>
+                <div class="cloud cloud3"></div>
+            </div>
+            <div class="welcome-content">
+                <h2 class="rainbow-text animate-bounce">Welcome to Wonder Valley!</h2>
+                <div class="character-intro" id="animalGame">
+                    <div class="character bunny" tabindex="0" aria-label="Benny Bunny" title="Benny Bunny"
+                        onclick="animalGameClick('bunny', this)" onkeypress="if(event.key==='Enter'){animalGameClick('bunny', this);}">
+                        <div class="character-body">🐰</div>
+                        <div class="character-name">Benny Bunny</div>
+                    </div>
+                    <div class="character owl" tabindex="0" aria-label="Ollie Owl" title="Ollie Owl"
+                        onclick="animalGameClick('owl', this)" onkeypress="if(event.key==='Enter'){animalGameClick('owl', this);}">
+                        <div class="character-body">🦉</div>
+                        <div class="character-name">Ollie Owl</div>
+                    </div>
+                    <div class="character fox" tabindex="0" aria-label="Fifi Fox" title="Fifi Fox"
+                        onclick="animalGameClick('fox', this)" onkeypress="if(event.key==='Enter'){animalGameClick('fox', this);}">
+                        <div class="character-body">🦊</div>
+                        <div class="character-name">Fifi Fox</div>
+                    </div>
+                </div>
+                <div id="animalGameMessage" class="animal-game-message" aria-live="polite"></div>
+                <button class="start-btn" id="startAdventureBtn" onclick="showWorldMap()" aria-label="Start Adventure" disabled style="opacity:0.5;pointer-events:none;">Start Adventure!</button>
+            </div>
+        </section>
+
+        <!-- ...existing code for other screens... -->
+
+    </div>
+    </main>
+
+    <!-- Parent Access Button -->
+    <div class="parent-access" tabindex="0" aria-label="Parent Dashboard" title="Parent Dashboard" onclick="showParentZone()" onkeypress="if(event.key==='Enter'){showParentZone();}">👨‍👩‍👧‍👦</div>
+
+    <!-- Audio Elements -->
+    <audio id="backgroundMusic" loop aria-label="Background music">
+        <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmEcBjiS1fLNeSsFJXfH8N2QQAoUXrTp66hVFApGn+DyvmEcBjiS1fLNeSsFJXfH8N2QQAoUXrTp66hVFApGn+DyvmEcBjiS1fLNeSsFJXfH8N2QQAoUXrTp66hVFApGn+DyvmEcBjiS1fLNeSsFJXfH8N2QQAoUXrTp66hVFApGn+DyvmEcBjWN0PLbeSsEJX" type="audio/wav">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
+<!-- ...existing code above... -->
+<section class="screen active" id="welcomeScreen" aria-label="Welcome Screen">
+    <div class="sky-bg" aria-hidden="true">
+        <div class="cloud cloud1"></div>
+        <div class="cloud cloud2"></div>
+        <div class="cloud cloud3"></div>
+    </div>
+    <div class="welcome-content">
+        <h2 class="rainbow-text animate-bounce">Welcome to Wonder Valley!</h2>
+        <div class="character-intro" id="animalGame">
+            <div class="character bunny" tabindex="0" aria-label="Benny Bunny" title="Benny Bunny"
+                onclick="animalGameClick('bunny', this)" onkeypress="if(event.key==='Enter'){animalGameClick('bunny', this);}">
+                <div class="character-body">🐰</div>
+                <div class="character-name">Benny Bunny</div>
+            </div>
+            <div class="character owl" tabindex="0" aria-label="Ollie Owl" title="Ollie Owl"
+                onclick="animalGameClick('owl', this)" onkeypress="if(event.key==='Enter'){animalGameClick('owl', this);}">
+                <div class="character-body">🦉</div>
+                <div class="character-name">Ollie Owl</div>
+            </div>
+            <div class="character fox" tabindex="0" aria-label="Fifi Fox" title="Fifi Fox"
+                onclick="animalGameClick('fox', this)" onkeypress="if(event.key==='Enter'){animalGameClick('fox', this);}">
+                <div class="character-body">🦊</div>
+                <div class="character-name">Fifi Fox</div>
+            </div>
+        </div>
+        <div id="animalGameMessage" class="animal-game-message" aria-live="polite"></div>
+        <button class="start-btn" id="startAdventureBtn" onclick="showWorldMap()" aria-label="Start Adventure" disabled style="opacity:0.5;pointer-events:none;">Start Adventure!</button>
+    </div>
+</section>
+<!-- ...existing code below... -->
+
+<script>
+// filepath: c:\class 1\index.html (or move to script.js)
+const animalSequence = ['bunny', 'owl', 'fox'];
+let animalGameProgress = [];
+let animalGameLocked = false;
+
+function animalGameClick(animal, el) {
+    if (animalGameLocked) return;
+    const idx = animalGameProgress.length;
+    if (animal === animalSequence[idx]) {
+        animalGameProgress.push(animal);
+        el.classList.add('animal-correct');
+        if (typeof playSound === "function") playSound(animal);
+        document.getElementById('animalGameMessage').textContent = `Great! Now find the next friend.`;
+        setTimeout(() => el.classList.remove('animal-correct'), 500);
+        if (animalGameProgress.length === animalSequence.length) {
+            document.getElementById('animalGameMessage').textContent = "Awesome! You found all friends!";
+            unlockStartAdventure();
+        }
+    } else {
+        el.classList.add('animal-wrong');
+        if (typeof playSound === "function") playSound('incorrect');
+        document.getElementById('animalGameMessage').textContent = "Oops! Try again from the start.";
+        animalGameLocked = true;
+        setTimeout(() => {
+            document.querySelectorAll('#animalGame .character').forEach(c => c.classList.remove('animal-wrong','animal-correct'));
+            animalGameProgress = [];
+            animalGameLocked = false;
+            document.getElementById('animalGameMessage').textContent = "Start with Benny Bunny!";
+        }, 1000);
+    }
+}
+
+function unlockStartAdventure() {
+    const btn = document.getElementById('startAdventureBtn');
+    btn.disabled = false;
+    btn.style.opacity = '1';
+    btn.style.pointerEvents = 'auto';
+}
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('animalGameMessage').textContent = "Start with Benny Bunny!";
+});
+</script>
+<style>
+/* Add to your style.css or inside a <style> tag */
+.animal-game-message {
+    margin: 10px 0 0 0;
+    min-height: 1.5em;
+    font-weight: bold;
+    color: #1976d2;
+    text-align: center;
+}
+.character.animal-correct {
+    box-shadow: 0 0 0 4px #4caf50;
+    background: #e8f5e9;
+    transition: box-shadow 0.2s, background 0.2s;
+}
+.character.animal-wrong {
+    box-shadow: 0 0 0 4px #e53935;
+    background: #ffebee;
+    transition: box-shadow 0.2s, background 0.2s;
+}
+#startAdventureBtn[disabled] {
+    opacity: 0.5;
+    pointer-events: none;
+}
+</style>

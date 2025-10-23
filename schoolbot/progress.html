@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Progress - MindMate</title>
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <!-- Font Awesome & Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Firebase SDK -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.23.0/firebase-app-compat.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.23.0/firebase-auth-compat.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.23.0/firebase-firestore-compat.min.js"></script>
+</head>
+<body>
+    <!-- Progress Page -->
+    <div id="progressPage" class="page active">
+        <div class="page-header">
+            <button class="back-btn" onclick="window.location.href='index.html#dashboardPage'">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <h1>📊 My Progress</h1>
+        </div>
+
+        <div class="progress-container">
+            <!-- Progress Overview -->
+            <div class="progress-overview">
+                <div class="overview-card">
+                    <div class="overview-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="overview-content">
+                        <h3>Total Score</h3>
+                        <p id="totalScore">1,250 points</p>
+                    </div>
+                </div>
+                
+                <div class="overview-card">
+                    <div class="overview-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="overview-content">
+                        <h3>Study Streak</h3>
+                        <p id="studyStreak">7 days</p>
+                    </div>
+                </div>
+                
+                <div class="overview-card">
+                    <div class="overview-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="overview-content">
+                        <h3>Total Study Time</h3>
+                        <p id="totalStudyTime">45 hours</p>
+                    </div>
+                </div>
+                
+                <div class="overview-card">
+                    <div class="overview-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="overview-content">
+                        <h3>Average Accuracy</h3>
+                        <p id="avgAccuracy">87%</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Performance Charts -->
+            <div class="charts-section">
+                <div class="chart-container">
+                    <h2>📈 Performance Trends</h2>
+                    <div class="chart-filters">
+                        <button class="filter-btn active" data-period="week">Week</button>
+                        <button class="filter-btn" data-period="month">Month</button>
+                        <button class="filter-btn" data-period="year">Year</button>
+                    </div>
+                    <div class="chart-area" id="performanceChart">
+                        <!-- Chart will be rendered here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subject-wise Progress -->
+            <div class="subjects-progress">
+                <h2>📚 Subject Performance</h2>
+                <div class="subjects-grid" id="subjectsProgressGrid">
+                    <!-- Subject progress cards will be dynamically generated -->
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="recent-activity">
+                <h2>🕒 Recent Activity</h2>
+                <div class="activity-timeline" id="activityTimeline">
+                    <!-- Activity items will be dynamically generated -->
+                </div>
+            </div>
+
+            <!-- Achievements -->
+            <div class="achievements-section">
+                <h2>🏆 Achievements</h2>
+                <div class="achievements-grid" id="achievementsGrid">
+                    <!-- Achievement badges will be dynamically generated -->
+                </div>
+            </div>
+
+            <!-- Study Analytics -->
+            <div class="analytics-section">
+                <div class="analytics-card">
+                    <h3>📊 Study Analytics</h3>
+                    <div class="analytics-content">
+                        <div class="analytics-item">
+                            <span class="analytics-label">Best Study Time</span>
+                            <span class="analytics-value" id="bestStudyTime">2:00 PM - 4:00 PM</span>
+                        </div>
+                        <div class="analytics-item">
+                            <span class="analytics-label">Most Studied Subject</span>
+                            <span class="analytics-value" id="mostStudiedSubject">Mathematics</span>
+                        </div>
+                        <div class="analytics-item">
+                            <span class="analytics-label">Longest Study Session</span>
+                            <span class="analytics-value" id="longestSession">3 hours 45 minutes</span>
+                        </div>
+                        <div class="analytics-item">
+                            <span class="analytics-label">Quiz Success Rate</span>
+                            <span class="analytics-value" id="quizSuccessRate">92%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="analytics-card">
+                    <h3>🎯 Goals Progress</h3>
+                    <div class="goals-progress" id="goalsProgress">
+                        <!-- Goals progress will be dynamically generated -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Study Recommendations -->
+            <div class="recommendations-section">
+                <h2>💡 Study Recommendations</h2>
+                <div class="recommendations-list" id="recommendationsList">
+                    <!-- AI-generated recommendations will be displayed here -->
+                </div>
+            </div>
+
+            <!-- Export Options -->
+            <div class="export-section">
+                <h2>📤 Export Progress</h2>
+                <div class="export-options">
+                    <button class="export-btn" id="exportPDFBtn">
+                        <i class="fas fa-file-pdf"></i>
+                        Export as PDF
+                    </button>
+                    <button class="export-btn" id="exportCSVBtn">
+                        <i class="fas fa-file-csv"></i>
+                        Export as CSV
+                    </button>
+                    <button class="export-btn" id="shareProgressBtn">
+                        <i class="fas fa-share-alt"></i>
+                        Share Progress
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Animation -->
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Loading your progress...</p>
+        </div>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="javascript/config.js"></script>
+    <script src="javascript/auth.js"></script>
+    <script src="javascript/progress.js"></script>
+    <script src="geminiAPI.js"></script>
+</body>
+</html> 

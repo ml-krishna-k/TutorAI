@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindMate - Your AI Learning Twin</title>
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <!-- Font Awesome & Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Firebase SDK - Updated CDN links -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="loginPage" class="page active">
+        <div class="login-container">
+            <div class="login-header">
+                <div class="logo">
+                    <i class="fas fa-brain"></i>
+                    <h1>MindMate</h1>
+                </div>
+                <p class="tagline">Your AI Learning Twin</p>
+            </div>
+            
+            <div class="login-form">
+                <h2 id="authTitle">Welcome Young Learner! 🌟</h2>
+                
+                <div id="errorMessage" class="error-message" style="display: none;"></div>
+                <div id="successMessage" class="success-message" style="display: none;"></div>
+                
+                <!-- Login Form -->
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Enter your email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Enter your password" required>
+                    </div>
+                    
+                    <button type="submit" class="auth-btn" id="authButton">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Sign In
+                    </button>
+                </form>
+
+                <!-- Registration Form -->
+                <form id="registerForm" style="display: none;">
+                    <div class="form-group">
+                        <label for="regName">Your Name</label>
+                        <input type="text" id="regName" placeholder="Enter your name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="regEmail">Email</label>
+                        <input type="email" id="regEmail" placeholder="Enter your email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="regPassword">Password</label>
+                        <input type="password" id="regPassword" placeholder="Create a password" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="studentClass">Class</label>
+                        <select id="studentClass" required>
+                            <option value="">Select your class</option>
+                            <option value="6">Class 6</option>
+                            <option value="7">Class 7</option>
+                            <option value="8">Class 8</option>
+                            <option value="9">Class 9</option>
+                            <option value="10">Class 10</option>
+                            <option value="11">Class 11</option>
+                            <option value="12">Class 12</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="studentBoard">Board</label>
+                        <select id="studentBoard" required>
+                            <option value="">Select your board</option>
+                            <option value="CBSE">CBSE</option>
+                            <option value="ICSE">ICSE</option>
+                            <option value="State Board">State Board</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="studentGoal">Goal</label>
+                        <select id="studentGoal" required>
+                            <option value="">Select your goal</option>
+                            <option value="School">School Excellence</option>
+                            <option value="NEET">NEET Preparation</option>
+                            <option value="JEE">JEE Preparation</option>
+                            <option value="Both">NEET + JEE</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="auth-btn">
+                        <i class="fas fa-user-plus"></i>
+                        Create Account
+                    </button>
+                </form>
+                
+                <button class="auth-btn google-btn" id="googleSignIn">
+                    <i class="fab fa-google"></i>
+                    Continue with Google
+                </button>
+                
+                <div class="auth-toggle">
+                    <span id="authToggleText">Don't have an account?</span>
+                    <button id="authToggleBtn">Sign Up</button>
+                </div>
+                
+                <!-- Debug button for testing -->
+                <button class="auth-btn" id="createTestUserBtn" style="margin-top: 10px; background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);">
+                    <i class="fas fa-bug"></i>
+                    Create Test User
+                </button>
+                
+                <!-- Test button to bypass login -->
+                <button class="auth-btn" id="testDashboardBtn" style="margin-top: 10px; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                    <i class="fas fa-play"></i>
+                    Test Dashboard (Skip Login)
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboardPage" class="page">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <i class="fas fa-brain"></i>
+                <span>MindMate</span>
+            </div>
+            <div class="nav-user">
+                <span id="welcomeUser">Welcome, Student!</span>
+                <button class="logout-btn" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </nav>
+
+        <div class="dashboard-container">
+            <div class="welcome-section">
+                <h1 id="dashboardWelcome">Hello, ready to learn today? 🚀</h1>
+                <p class="date-time" id="currentDateTime"></p>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="dashboard-card" data-page="neetJeePage" style="grid-column: span 2; grid-row: span 2;">
+                    <div class="card-icon neet-jee">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>NEET & JEE Corner</h3>
+                    <p>Your gateway to medical and engineering excellence</p>
+                </div>
+            </div>
+            
+            <!-- Class Selection UI -->
+            <div class="class-selection">
+                <h2>Choose Your Class</h2>
+                <div class="class-grid">
+                    <button class="class-btn" id="class1Btn">Class 1</button>
+                    <button class="class-btn" id="class2Btn">Class 2</button>
+                    <button class="class-btn" id="class3Btn">Class 3</button>
+                    <button class="class-btn" id="class4Btn">Class 4</button>
+                    <button class="class-btn" id="class5Btn">Class 5</button>
+                    <button class="class-btn" id="class6Btn">Class 6</button>
+                    <button class="class-btn" id="class7Btn">Class 7</button>
+                    <button class="class-btn" id="class8Btn">Class 8</button>
+                    <button class="class-btn" id="class9Btn">Class 9</button>
+                    <button class="class-btn" id="class10Btn">Class 10</button>
+                    <button class="class-btn" id="class11Btn">Class 11</button>
+                    <button class="class-btn" id="class12Btn">Class 12</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Animation -->
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Loading...</p>
+        </div>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="javascript/config.js"></script>
+    <script src="javascript/auth.js"></script>
+    <script src="javascript/app.js"></script>
+    <script src="geminiAPI.js"></script>
+</body>
+</html>

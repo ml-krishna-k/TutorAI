@@ -1,0 +1,20 @@
+{
+  "name": "mindmate-schoolbot",
+  "version": "1.0.0",
+  "description": "AI-powered learning platform for students",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'No build step required for static site'",
+    "start": "vercel dev"
+  },
+  "keywords": ["education", "ai", "learning", "students", "quiz", "study"],
+  "author": "MindMate Team",
+  "license": "MIT",
+  "devDependencies": {
+    "vercel": "^32.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
