@@ -1,0 +1,571 @@
+/* Responsive Design */
+
+/* Large Desktop (1400px and up) */
+@media (min-width: 1400px) {
+    .dashboard-container {
+        max-width: 1600px;
+    }
+    
+    .login-form {
+        max-width: 550px;
+    }
+    
+    .dashboard-grid {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
+}
+
+/* Desktop (1200px to 1399px) */
+@media (max-width: 1399px) {
+    .dashboard-container {
+        padding: 30px;
+    }
+    
+    .welcome-section h1 {
+        font-size: 2.5rem;
+    }
+}
+
+/* Tablet Landscape (992px to 1199px) */
+@media (max-width: 1199px) {
+    .dashboard-container {
+        padding: 25px;
+    }
+    
+    .dashboard-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+    }
+    
+    .class-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 12px;
+    }
+    
+    .login-form {
+        max-width: 450px;
+        padding: 40px;
+    }
+    
+    .logo h1 {
+        font-size: 2.5rem;
+    }
+    
+    .logo i {
+        font-size: 3rem;
+    }
+}
+
+/* Tablet Portrait (768px to 991px) */
+@media (max-width: 991px) {
+    .dashboard-container {
+        padding: 20px;
+    }
+    
+    .welcome-section h1 {
+        font-size: 2.2rem;
+    }
+    
+    .dashboard-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+    }
+    
+    .class-grid {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 10px;
+        max-width: 800px;
+    }
+    
+    .class-btn {
+        padding: 15px 10px;
+        font-size: 1rem;
+    }
+    
+    .login-form {
+        max-width: 400px;
+        padding: 35px;
+    }
+    
+    .logo h1 {
+        font-size: 2.2rem;
+    }
+    
+    .logo i {
+        font-size: 2.5rem;
+    }
+    
+    .navbar {
+        padding: 15px 20px;
+    }
+    
+    .nav-brand {
+        font-size: 1.5rem;
+    }
+    
+    .nav-user span {
+        font-size: 1rem;
+    }
+}
+
+/* Mobile Large (576px to 767px) */
+@media (max-width: 767px) {
+    .dashboard-container {
+        padding: 15px;
+    }
+    
+    .welcome-section {
+        margin-bottom: 30px;
+    }
+    
+    .welcome-section h1 {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+    }
+    
+    .date-time {
+        font-size: 1rem;
+    }
+    
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        margin-top: 30px;
+    }
+    
+    .dashboard-card {
+        padding: 25px;
+    }
+    
+    .card-icon {
+        width: 80px;
+        height: 80px;
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+    
+    .dashboard-card h3 {
+        font-size: 1.5rem;
+    }
+    
+    .dashboard-card p {
+        font-size: 1rem;
+    }
+    
+    .class-selection {
+        margin-top: 40px;
+    }
+    
+    .class-selection h2 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+    }
+    
+    .class-grid {
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+        gap: 8px;
+        max-width: 600px;
+    }
+    
+    .class-btn {
+        padding: 12px 8px;
+        font-size: 0.9rem;
+        border-radius: 10px;
+    }
+    
+    .login-container {
+        padding: 15px;
+    }
+    
+    .login-header {
+        margin-bottom: 30px;
+    }
+    
+    .logo h1 {
+        font-size: 2rem;
+    }
+    
+    .logo i {
+        font-size: 2.2rem;
+    }
+    
+    .tagline {
+        font-size: 1.1rem;
+    }
+    
+    .login-form {
+        max-width: 100%;
+        padding: 30px 25px;
+        border-radius: 20px;
+    }
+    
+    .login-form h2 {
+        font-size: 1.5rem;
+        margin-bottom: 25px;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 15px;
+        font-size: 16px; /* Prevent zoom on iOS */
+    }
+    
+    .auth-btn {
+        padding: 16px;
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+    
+    .navbar {
+        padding: 12px 15px;
+    }
+    
+    .nav-brand {
+        font-size: 1.3rem;
+        gap: 10px;
+    }
+    
+    .nav-user {
+        gap: 15px;
+    }
+    
+    .nav-user span {
+        font-size: 0.9rem;
+    }
+    
+    .logout-btn {
+        padding: 10px 15px;
+    }
+    
+    /* NEET/JEE card special handling */
+    .dashboard-card[data-page="neetJeePage"] {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+}
+
+/* Mobile Small (up to 575px) */
+@media (max-width: 575px) {
+    .dashboard-container {
+        padding: 10px;
+    }
+    
+    .welcome-section h1 {
+        font-size: 1.6rem;
+    }
+    
+    .dashboard-card {
+        padding: 20px;
+        border-radius: 15px;
+    }
+    
+    .card-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+    }
+    
+    .dashboard-card h3 {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+    }
+    
+    .dashboard-card p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+    
+    .class-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+        max-width: 400px;
+    }
+    
+    .class-btn {
+        padding: 10px 6px;
+        font-size: 0.8rem;
+        border-radius: 8px;
+    }
+    
+    .login-container {
+        padding: 10px;
+    }
+    
+    .login-header {
+        margin-bottom: 25px;
+    }
+    
+    .logo {
+        gap: 10px;
+    }
+    
+    .logo h1 {
+        font-size: 1.8rem;
+    }
+    
+    .logo i {
+        font-size: 2rem;
+    }
+    
+    .tagline {
+        font-size: 1rem;
+    }
+    
+    .login-form {
+        padding: 25px 20px;
+        border-radius: 15px;
+    }
+    
+    .login-form h2 {
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+    }
+    
+    .form-group label {
+        font-size: 0.85rem;
+        margin-bottom: 8px;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 12px;
+        font-size: 16px;
+        border-radius: 10px;
+    }
+    
+    .auth-btn {
+        padding: 14px;
+        font-size: 15px;
+        margin-bottom: 12px;
+    }
+    
+    .navbar {
+        padding: 10px 12px;
+    }
+    
+    .nav-brand {
+        font-size: 1.2rem;
+        gap: 8px;
+    }
+    
+    .nav-brand i {
+        font-size: 1.5rem;
+    }
+    
+    .nav-user {
+        gap: 10px;
+    }
+    
+    .nav-user span {
+        font-size: 0.85rem;
+    }
+    
+    .logout-btn {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+    
+    /* Hide some elements on very small screens */
+    .nav-user span {
+        display: none;
+    }
+    
+    .tagline {
+        display: none;
+    }
+}
+
+/* Extra Small Mobile (up to 375px) */
+@media (max-width: 375px) {
+    .dashboard-container {
+        padding: 8px;
+    }
+    
+    .welcome-section h1 {
+        font-size: 1.4rem;
+    }
+    
+    .dashboard-card {
+        padding: 15px;
+    }
+    
+    .card-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+    
+    .dashboard-card h3 {
+        font-size: 1.2rem;
+    }
+    
+    .dashboard-card p {
+        font-size: 0.85rem;
+    }
+    
+    .class-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 5px;
+    }
+    
+    .class-btn {
+        padding: 8px 4px;
+        font-size: 0.75rem;
+    }
+    
+    .login-form {
+        padding: 20px 15px;
+    }
+    
+    .login-form h2 {
+        font-size: 1.2rem;
+    }
+    
+    .logo h1 {
+        font-size: 1.6rem;
+    }
+    
+    .logo i {
+        font-size: 1.8rem;
+    }
+}
+
+/* Landscape orientation adjustments */
+@media (max-height: 600px) and (orientation: landscape) {
+    .login-container {
+        padding: 10px;
+    }
+    
+    .login-header {
+        margin-bottom: 20px;
+    }
+    
+    .logo h1 {
+        font-size: 1.8rem;
+    }
+    
+    .logo i {
+        font-size: 2rem;
+    }
+    
+    .login-form {
+        padding: 25px;
+        max-width: 400px;
+    }
+    
+    .form-group {
+        margin-bottom: 15px;
+    }
+    
+    .auth-btn {
+        padding: 12px;
+        margin-bottom: 10px;
+    }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .card-icon {
+        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+    }
+    
+    .auth-btn {
+        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+    }
+}
+
+/* Print styles */
+@media print {
+    .navbar,
+    .logout-btn,
+    .auth-btn,
+    .class-btn {
+        display: none !important;
+    }
+    
+    .dashboard-container {
+        padding: 0;
+    }
+    
+    .dashboard-card {
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .auth-btn::before,
+    .class-btn::before {
+        display: none;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .dashboard-card {
+        background: rgba(30, 30, 30, 0.98);
+        color: #fff;
+    }
+    
+    .dashboard-card h3,
+    .dashboard-card p {
+        color: #fff;
+    }
+    
+    .navbar {
+        background: rgba(30, 30, 30, 0.98);
+    }
+    
+    .nav-user span {
+        color: #fff;
+    }
+    
+    .welcome-section h1 {
+        color: #fff;
+    }
+    
+    .date-time {
+        color: #ccc;
+    }
+}
+
+/* Focus styles for accessibility */
+.auth-btn:focus,
+.class-btn:focus,
+.logout-btn:focus,
+.form-group input:focus,
+.form-group select:focus {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
+}
+
+/* Hover effects for touch devices */
+@media (hover: none) {
+    .auth-btn:hover,
+    .class-btn:hover,
+    .logout-btn:hover,
+    .dashboard-card:hover {
+        transform: none;
+    }
+    
+    .auth-btn:active,
+    .class-btn:active,
+    .logout-btn:active {
+        transform: scale(0.98);
+    }
+}
+}

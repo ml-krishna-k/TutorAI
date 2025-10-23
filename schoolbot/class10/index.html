@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyBuddy - Class 10 Learning Assistant</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>StudyBuddy</h2>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item">
+                    <button class="nav-link active" data-panel="chat-panel">🧠 Ask a Doubt</button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" data-panel="notes-panel">📚 Smart Notes</button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" data-panel="quiz-panel">🧪 Quiz Arena</button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" data-panel="motivation-panel">🌈 Motivation</button>
+                </li>
+            </ul>
+            <div class="nav-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Chat Panel -->
+        <div id="chat-panel" class="panel active">
+            <div class="panel-header">
+                <h2>Ask a Doubt</h2>
+                <p>Get instant help with your questions powered by MINDMATE!</p>
+            </div>
+
+            <div class="chat-container">
+                <div id="chat" class="chat"></div>
+
+                <div class="chat-input-area">
+                    <form id="doubtForm" class="doubt-form">
+                        <div class="input-group">
+                            <textarea id="questionInput" 
+                                    class="form-control" 
+                                    placeholder="Type your question here..." 
+                                    rows="3"></textarea>
+                        </div>
+
+                        <div class="upload-buttons">
+                            <label class="upload-btn">
+                                📷 Upload Image
+                                <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+                            </label>
+                            <label class="upload-btn">
+                                🎵 Upload Audio
+                                <input type="file" id="audioUpload" accept="audio/*" style="display: none;">
+                            </label>
+                            <label class="upload-btn">
+                                📄 Upload File
+                                <input type="file" id="fileUpload" accept=".pdf,.doc,.docx,.txt" style="display: none;">
+                            </label>
+                        </div>
+
+                        <div id="previewBox" class="preview-container hidden"></div>
+
+                        <button type="submit" class="btn btn--primary btn--full-width">
+                            Send Question
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notes Panel -->
+        <div id="notes-panel" class="panel">
+            <div class="panel-header">
+                <h2>📚 Smart Notes</h2>
+                <p>Organize your study materials by subject</p>
+            </div>
+
+            <ul class="subject-tabs">
+                <li class="subject-tab active" data-subject="All">📊 All</li>
+                <li class="subject-tab" data-subject="Maths">📊 Maths</li>
+                <li class="subject-tab" data-subject="Science">🧪 Science</li>
+                <li class="subject-tab" data-subject="Social Science">🌍 Social Science</li>
+                <li class="subject-tab" data-subject="English">📖 English</li>
+                <li class="subject-tab" data-subject="Hindi">🇮🇳 Hindi</li>
+            </ul>
+
+            <div class="notes-grid" id="notesGrid">
+                <!-- Notes will be populated here -->
+            </div>
+
+            <div class="upload-card" id="notesUploadArea">
+                <div class="upload-area">
+                    <div class="upload-placeholder">
+                        <p>📁</p>
+                        <p>Upload New Notes</p>
+                        <p>Drag & drop or click to browse</p>
+                    </div>
+                    <input type="file" id="notesFileInput" accept=".pdf,.doc,.docx,.txt" style="display: none;">
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Panel -->
+        <div id="quiz-panel" class="panel">
+            <div class="panel-header">
+                <h2>🧪 Quiz Arena</h2>
+                <p>Test your knowledge with personalized quizzes</p>
+            </div>
+
+            <!-- Quiz Setup -->
+            <div id="quiz-setup" class="quiz-setup">
+                <form id="quizSetupForm" class="setup-form">
+                    <div class="form-group">
+                        <label class="form-label">Subject</label>
+                        <select id="quizSubject" class="form-control" required>
+                            <option value="">Select Subject</option>
+                            <option value="Maths">Mathematics</option>
+                            <option value="Science">Science</option>
+                            <option value="Social Science">Social Science</option>
+                            <option value="English">English</option>
+                            <option value="Hindi">Hindi</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Topic</label>
+                        <select id="quizTopic" class="form-control" required>
+                            <option value="">Select Topic</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Number of Questions: <span id="questionCountDisplay">10</span></label>
+                        <input type="range" id="questionCount" min="5" max="20" value="10" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Time Limit (minutes)</label>
+                        <select id="timeLimit" class="form-control" required>
+                            <option value="5">5 minutes</option>
+                            <option value="10" selected>10 minutes</option>
+                            <option value="15">15 minutes</option>
+                            <option value="20">20 minutes</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn--primary btn--full-width">
+                        Start Quiz
+                    </button>
+                </form>
+            </div>
+
+            <!-- Quiz Container -->
+            <div id="quiz-container" class="quiz-container hidden">
+                <div class="quiz-header">
+                    <div id="questionCounter" class="question-counter"></div>
+                    <div id="quizTimer" class="quiz-timer"></div>
+                </div>
+
+                <div id="questionContainer" class="question-container">
+                    <!-- Questions will be populated here -->
+                </div>
+
+                <div class="quiz-navigation">
+                    <button id="prevQuestion" class="btn btn--secondary" onclick="prevQuestion()">
+                        Previous
+                    </button>
+                    <button id="nextQuestion" class="btn btn--primary" onclick="nextQuestion()">
+                        Next
+                    </button>
+                    <button id="submitQuiz" class="btn btn--primary hidden" onclick="submitQuiz()">
+                        Submit Quiz
+                    </button>
+                </div>
+            </div>
+
+            <!-- Results Container -->
+            <div id="quiz-results" class="results-container hidden">
+                <div class="results-header">
+                    <h3>Quiz Complete!</h3>
+                    <div class="score-display">
+                        <span class="score" id="finalScore"></span>
+                        <span class="percentage" id="finalPercentage"></span>
+                    </div>
+                </div>
+
+                <div id="answerReview" class="answer-review">
+                    <!-- Answer review will be populated here -->
+                </div>
+
+                <div class="results-actions">
+                    <button class="btn btn--primary" onclick="restartQuiz()">
+                        Take Another Quiz
+                    </button>
+                    <button class="btn btn--secondary" onclick="location.reload()">
+                        Back to Dashboard
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Motivation Panel -->
+        <div id="motivation-panel" class="panel">
+            <div class="panel-header">
+                <h2>🌈 Motivation Corner</h2>
+                <p>Get your daily dose of inspiration!</p>
+            </div>
+
+            <div class="motivation-content">
+                <div class="quote-section">
+                    <div id="motivationalQuote" class="motivational-quote">
+                        "Success is the sum of small efforts repeated day in and day out."
+                    </div>
+                    <button class="btn btn--secondary" onclick="motivationModule.displayRandomQuote()">
+                        New Quote
+                    </button>
+                </div>
+
+                <div class="video-section">
+                    <h3>Motivational Video</h3>
+                    <div id="videoContainer" class="video-container">
+                        <!-- Video will be loaded when panel is active -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="mistralAPI.js"></script>
+    <script src="app.js"></script>
+
+    <script>
+        // Subject-Topic mapping for quiz setup
+        const subjectTopics = {
+            "Maths": ["Algebra", "Geometry", "Trigonometry"],
+            "Science": ["Physics", "Chemistry", "Biology"],
+            "Social Science": ["History", "Geography", "Civics"],
+            "English": ["Grammar", "Literature"],
+            "Hindi": ["Vyakaran", "Sahitya"]
+        };
+
+        // Update topics when subject changes
+        document.getElementById('quizSubject').addEventListener('change', function() {
+            const topicSelect = document.getElementById('quizTopic');
+            const selectedSubject = this.value;
+
+            topicSelect.innerHTML = '<option value="">Select Topic</option>';
+
+            if (selectedSubject && subjectTopics[selectedSubject]) {
+                subjectTopics[selectedSubject].forEach(topic => {
+                    const option = document.createElement('option');
+                    option.value = topic;
+                    option.textContent = topic;
+                    topicSelect.appendChild(option);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

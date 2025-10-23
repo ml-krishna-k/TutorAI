@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class 5 Gamified Learning System</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="container">
+    <!-- HUB SECTION -->
+    <section id="hub" class="hub" aria-label="Main Hub">
+      <h1 class="text-center mb-8">Welcome to Class 5 Learning Adventure</h1>
+      <p class="text-center mb-16">Choose your portal to begin your journey!</p>
+      <div class="flex justify-center gap-16">
+        <button class="portal-btn" data-zone="math" aria-label="Enter Maths Galaxy">🚀 <span>Maths Galaxy</span></button>
+        <button class="portal-btn" data-zone="english" aria-label="Enter English Kingdom">📚 <span>English Kingdom</span></button>
+      </div>
+    </section>
+
+    <!-- MATH ZONE -->
+    <section id="mathZone" class="zone hidden" aria-label="Maths Galaxy Dashboard">
+      <div class="zone-header flex justify-between items-center mb-16">
+        <button class="btn btn--secondary" id="backFromMath" aria-label="Back to Hub" onclick="window.location.href = '../frontend/index.html#dashboardPage'"> Hub</button>
+        <h2>Maths Galaxy</h2>
+        <div id="mathXp" class="status status--info" aria-live="polite">XP: <span>0</span></div>
+      </div>
+      <h3 class="mb-8">Activities</h3>
+      <div id="mathActivities" class="activities-grid mb-16" aria-live="polite"></div>
+      <h3 class="mb-8">Achievements</h3>
+      <div id="mathAchievements" class="achievements-grid"></div>
+    </section>
+
+    <!-- ENGLISH ZONE -->
+    <section id="englishZone" class="zone hidden" aria-label="English Kingdom Dashboard">
+      <div class="zone-header flex justify-between items-center mb-16">
+        <button class="btn btn--secondary" id="backFromEnglish" aria-label="Back to Hub" onclick="window.location.href = '../frontend/index.html#dashboardPage'"> Hub</button>
+        <h2>English Kingdom</h2>
+        <div id="englishXp" class="status status--info" aria-live="polite">XP: <span>0</span></div>
+      </div>
+      <h3 class="mb-8">Activities</h3>
+      <div id="englishActivities" class="activities-grid mb-16" aria-live="polite"></div>
+      <h3 class="mb-8">Achievements</h3>
+      <div id="englishAchievements" class="achievements-grid"></div>
+    </section>
+
+    <!-- ACTIVITY PLAY SECTION -->
+    <section id="activitySection" class="hidden" aria-label="Activity Play Area">
+      <div class="activity-header flex justify-between items-center mb-16">
+        <button class="btn btn--secondary" id="backToDashboard" aria-label="Back to Dashboard" onclick="window.location.href = '../frontend/index.html#dashboardPage'"> Dashboard</button>
+        <h2 id="activityTitle">Activity</h2>
+        <div id="starsEarned" class="status status--warning">⭐ 0</div>
+      </div>
+      <p id="activityDescription" class="mb-16"></p>
+      <div id="questionContainer"></div>
+    </section>
+  </main>
+
+  <!-- Audio for simple click feedback -->
+  <audio id="clickSound" preload="auto" src="data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAIlYAAESsAAACABAAZGF0YQAAAAA=">Your browser does not support the audio element.</audio>
+
+  <script src="../frontend/geminiAPI.js"></script>
+  <script src="../frontend/emotionDetection.js"></script>
+  <script src="app.js" defer></script>
+</body>
+</html>
